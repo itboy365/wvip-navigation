@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SearchBox from '../components/SearchBox.astro';
+import Section from '../components/Section.astro';
+import Contribute from '../components/Contribute.astro';
+import sites from '../data/sites.json';
+
+const categories = [
+  { key: 'national', title: '国家级生活服务' },
+  { key: 'knowledge', title: '知识学习 · 国内' },
+  { key: 'tools', title: '实用在线工具' },
+  { key: 'inspiration', title: '灵感 · 推荐' },
+  { key: 'international', title: '全球视野' },
+];
+---
+
+<BaseLayout>
+  <div class="container">
+    <header class="header">
+      <span class="logo">WVIP.TOP</span>
+      <span class="slogan">万物精选 · 纯粹好用</span>
+    </header>
+
+    <SearchBox />
+
+    {categories.map((cat, index) => (
+      <Section 
+        title={cat.title} 
+        sectionId={`section-${cat.key}`} 
+        sites={sites.filter(s => s.category === cat.key)} 
+      />
+    ))}
+
+    <Contribute />
+
+    <footer class="footer">
+      <div class="statement">
+        本站为非盈利个人站点，最初只是一个私人收藏夹，逐步整理迭代成现在的样子。没有商业推广，没有会员机制，只收录我认可的正规网站，方便自己，也方便大家。
+      </div>
+      万物精选 · 纯粹好用 · <a href="https://wvip.top" target="_blank">WVIP.TOP</a>
+    </footer>
+  </div>
+</BaseLayout>

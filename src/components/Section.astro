@@ -1,0 +1,22 @@
+---
+const { title, sectionId, sites } = Astro.props;
+---
+
+<div class="section-wrapper" id={sectionId}>
+  <div class="section-header" onclick={`toggleSection('${sectionId}')`}>
+    <h2 class="section-title">{title}</h2>
+    <span class="section-arrow">▼</span>
+  </div>
+  <div class="section-content">
+    <div class="cards-grid">
+      {sites.map(site => (
+        <a href={site.url} class="card" target="_blank" rel="noopener" data-keywords={site.title + ' ' + site.desc + ' ' + site.badge}>
+          <span class="card-icon">{site.icon}</span>
+          <div class="card-title">{site.title}</div>
+          <div class="card-desc">{site.desc}</div>
+          <span class="card-badge">{site.badge}</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</div>

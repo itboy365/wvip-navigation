@@ -1,0 +1,47 @@
+---
+// Contribute.astro
+---
+
+<div class="contribute" id="contributeSection">
+  <h2>欢迎网友投稿分享！</h2>
+  <div class="email-line">
+    <span class="email-btn" onclick="openEmailModal()">admin@wvip.top</span>
+  </div>
+  <div class="note">
+    📌 我会认真查看每一封邮件，合适的才会收录。如果收录了我会回复你。无论是否收录，都会诚挚地感谢您的分享！
+  </div>
+  <div class="note" style="margin-top:6px;">
+    发现链接打不开？请发送邮件至 admin@wvip.top，我会尽快修复。
+  </div>
+</div>
+
+<style>
+  /* 为投稿区域微调样式 */
+  .contribute h2 {
+    margin-bottom: 14px; /* 标题和邮箱按钮的间距稍近一点 */
+  }
+
+  .contribute .email-line {
+    margin-bottom: 14px; /* 邮箱按钮和下方文字的间距稍远一点，形成层次 */
+  }
+
+  .contribute .email-btn {
+    /* 让邮箱地址看起来更轻量，像一个链接而不是按钮 */
+    background: transparent;       /* 去掉背景色 */
+    border: none;                  /* 去掉边框 */
+    box-shadow: none;              /* 去掉阴影 */
+    padding: 0;                    /* 去掉内边距 */
+    font-size: 17px;               /* 字号稍大一点，更清晰 */
+    font-weight: 500;              /* 加一点粗度 */
+    color: var(--accent);          /* 使用强调色 */
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+  }
+
+  .contribute .email-btn:hover {
+    background: transparent;       /* 悬停时保持无背景 */
+    border: none;
+    box-shadow: none;
+    opacity: 0.8;                  /* 悬停时轻微变暗作为反馈 */
+  }
+</style>

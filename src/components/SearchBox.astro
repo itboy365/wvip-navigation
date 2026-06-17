@@ -1,0 +1,44 @@
+---
+// SearchBox.astro
+---
+
+<div class="search-wrapper">
+  <input type="text" class="search-box" id="searchInput" placeholder="搜索你需要的工具或服务...">
+</div>
+<div class="no-result" id="noResult">
+  没找到？欢迎推荐好网站，<a href="#contributeSection">点此投稿</a>
+</div>
+
+<script>
+  const searchInput = document.getElementById('searchInput');
+  const noResult = document.getElementById('noResult');
+
+  searchInput.addEventListener('input', function() {
+    const term = this.value.trim().toLowerCase();
+    let hasVisible = false;
+    document.querySelectorAll('.card').forEach(card => {
+      const keywords = (card.getAttribute('data-keywords') || '') + ' ' +
+        (card.querySelector('.card-title')?.textContent || '') + ' ' +
+        (card.querySelector('.card-desc')?.textContent || '');
+      if (!term || keywords.toLowerCase().includes(term)) {
+        card.style.display = '';
+        hasVisible = true;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+    if (term) {
+      document.querySelectorAll('.section-wrapper').forEach(w => {
+        if (!w.classList.contains('open')) {
+          window.toggleSection(w.id);
+        }
+      });
+    }
+    noResult.style.display = (term && !hasVisible) ? 'block' : 'none';
+  });
+
+  document.querySelector('.no-result a')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    document.getElementById('contributeSection')?.scrollIntoView({ behavior: 'smooth' });
+  });
+</script>
